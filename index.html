@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Popup Example</title>
+  <title>IP Popup</title>
   <script>
     window.onload = function() {
-      alert("You have been hacked!");
+      fetch("https://api.ipify.org?format=json")
+        .then(response => response.json())
+        .then(data => {
+          alert("You have been hacked!\nYour IP: " + data.ip);
+        })
+        .catch(() => {
+          alert("You have been hacked!\nIP address could not be retrieved.");
+        });
     };
   </script>
 </head>
 <body>
   <h1>Welcome</h1>
-  <p>This page displays a popup message on load.</p>
+  <p>This page shows your IP address in a popup (for demo purposes).</p>
 </body>
 </html>
